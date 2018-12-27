@@ -12,23 +12,24 @@ public class Main {
             folder = null;
         }
 
-        CSVReader reader = new CSVReader(new InputStreamReader(System.in));
-        String[] line;
-        int lineNumber = 0;
+        try (CSVReader reader = new CSVReader(new InputStreamReader(System.in))) {
+            String[] line;
+            int lineNumber = 0;
 
-        System.out.println(TodoistTask.getHeader());
-        while ((line = reader.readNext()) != null) {
-            lineNumber++;
-            if (lineNumber == 1) continue; // skip the header
+            System.out.println(TodoistTask.getHeader());
+            while ((line = reader.readNext()) != null) {
+                lineNumber++;
+                if (lineNumber == 1) continue; // skip the header
 
-            ToodledoTask toodledoTask = new ToodledoTask(line);
-            TodoistTask todoistTask = new TodoistTask(toodledoTask);
+                ToodledoTask toodledoTask = new ToodledoTask(line);
+                TodoistTask todoistTask = new TodoistTask(toodledoTask);
 
-            if (null == folder) {
-                System.out.println(todoistTask.getCsvLine());
-            } else {
-                if (toodledoTask.getFolder().equalsIgnoreCase(folder)) {
+                if (null == folder) {
                     System.out.println(todoistTask.getCsvLine());
+                } else {
+                    if (toodledoTask.getFolder().equalsIgnoreCase(folder)) {
+                        System.out.println(todoistTask.getCsvLine());
+                    }
                 }
             }
         }

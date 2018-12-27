@@ -1,0 +1,364 @@
+TYPE,CONTENT,PRIORITY,INDENT,AUTHOR,RESPONSIBLE,DATE,DATE_LANG,TIMEZONE
+"task","Todoist: weekly, monthly supported.","4","1","","","2018-12-27","en",""
+"note","weekly: every monday
+monthly: every 24th
+bimonthly, quarterly, ... : starting today, replan manually",,,,,,,
+"task","rolling deployments (frontends): can we guarantee that the users are directed only to new frontends?","4","1","","","2019-01-02","en",""
+"task","Adam Bien videos","4","1","","","2018-12-28","en",""
+"task","permission-db1: corrupted VM, must be restarted. no backups","4","1","","","2019-01-02","en",""
+"task","Plan repository moving","4","1","","","2019-01-02","en",""
+"note","spot2
+spot2-instructions 
+spot2-reports
+oms (folder)
+jshards
+spotshards 
+spot2-mobile 
+spot2-android",,,,,,,
+"task","Business metrics: number of shipments created, etc","4","1","","","2019-01-14","en",""
+"task","Cloud Native Storage Project","4","1","","","2019-01-02","en",""
+"note","Netapp Trident",,,,,,,
+"task","parcel-raffle exception deletion","4","1","","","2019-01-08","en",""
+"note","https://servicedesk.cargo-partner.com/browse/ITSD-50800?focusedCommentId=451096&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-451096",,,,,,,
+"task","New SSL/https cert *.dev.cargo-partner.com","4","1","","","2020-09-10","en",""
+"note","validity ends: 2020-10-02
+spot-ci.cp.local:/mnt/storage/data/http-filestore/cert/dev.cargo-partner.com/2020
+domain.key
+domain.cert.chained - all 3 combined (cert, intermediate, root)
+
+repo: spot-ci/spot-ci-service-redirector
+install.sh
+src/main/setup/image/Dockerfile
+Change curl path to "2020" subfolder
+
+go to nginx01.dev.cp.local
+cd spot-ci-service-redirector
+sudo bash
+git pull
+sh install.sh",,,,,,,
+"task","Openshift Physical Router - move away from virtual Palo Alto","4","1","","","2019-05-06","en",""
+"task","User Sync REST call @spot2","2","1","","","","en",""
+"note","curl -v -H 'X-Spot-Id: 1' -H 'X-Spot-Identity: system' -H 'X-Spot-UserId: 1' spot-backend:8080/spot-services/rest/xxx/mdm/users",,,,,,,
+"task","Docker cleanup @docker","4","1","","","","en",""
+"note","docker rmi $(docker images -q)
+docker rm $(docker ps -qa)",,,,,,,
+"task","master.cloud ticket -> Technical Management @openshift","4","1","","","","en",""
+"note","from the system logs I saw that on test cluster master02 and master 03 became MASTER twice at 18:03 and 18:22 on 25.5.2018, although master01 never failed the healthcheck!
+This indicates some network hiccup/transient network issue.
+master01 immediately recognized that and retook the MASTER state.
+but if you were unable to reach the master VIP with browser, that either means that the network router did not get the gratitous ARP messages from master01, or your client still got the wrong MAC address.
+What I will do now is to increase the number of gar ARP packets in such a case - so that router updates its arp cache in any case
+
+The multicast messages between clustermembers must have been lost, thats why master02/03 tried to takeover MASTER state
+
+6pm - 7pm
+
+
+arp -a | find "163"
+arp -d 10.8.25.163 on FIS TEST
+arp -d 10.8.24.163 on FIS PROD
+arp -a | find "163"
+
+
+MAC Adresses for TEST are:
+
+master01.test.cloud.cp.local ens192: 00:50:56:be:20:f3
+master02.test.cloud.cp.local ens192: 00:50:56:be:0a:13
+master03.test.cloud.cp.local ens192: 00:50:56:be:0b:f5
+
+PROD
+master01.cloud.cp.local ens192 00:50:56:be:13:36
+master02.cloud.cp.local ens192 00:50:56:be:17:59
+master03.cloud.cp.local ens192 00:50:56:be:0c:03",,,,,,,
+"task","Update alertmanager rules @openshift","4","1","","","","en",""
+"note","spot-ci.cp.local:/var/root/origin36-playbook/playbooks/prometheus
+ansible-playbook -i ../prometheus.inv deploy-global-prometheus-from-repo.yml
+https://prometheus.io/webtools/alerting/routing-tree-editor/",,,,,,,
+"task","AWS project","4","1","","","2019-02-04","en",""
+"note","https://red.ht/2JPcDZU",,,,,,,
+"task","Growing images @git.dev.cp.local: gitblit @spot-ci","2","1","","","bimonthly","en",""
+"note","2018-04-23: 415M
+2018-06-21: 152M (logs?)
+2018-08-13: 152M
+2018-09-12: git 6MB, gitblit 160MB
+2018-12-12: git 11MB, gitblit 157MB",,,,,,,
+"task","Jenkins2: growing ~400MB per month, will be too late end of 2018 @spot-ci","2","1","","","bimonthly","en",""
+"note","4da0e74a48b3        jenkins2:2.46.2                                          "/bin/tini -- /usr..."   3 months ago        Up 43 hours             0.0.0.0:50000->50000/tcp, 0.0.0.0:9302->8080/tcp                           jenkins2              1.39GB (virtual 2.75GB)
+ee4afc86e8bd        jenkins                                                  "/bin/sh -c /usr/l..."   3 months ago        Up 3 months             0.0.0.0:9322->22/tcp, 0.0.0.0:9301->8080/tcp, 0.0.0.0:9300->9000/tcp       jenkins               286MB (virtual 1.66GB)
+
+2018-02-13: jenkins2 2,14G; jenkins1 287M
+2018-03-13: jenkins2 683MB; jenkins1 288MB
+2018-04-13: jenkins2 1200MB; jenkins1 288MB
+
+recreation
+
+2018-04-13: jenkins2 12,5KB
+2018-05-13: jenkins2 47,8KB, jenkins 288MB
+2018-06-12: jenkins2 8MB, jenkins 288MB
+2018-08-13: jenkins2 163K, jenkins 90M
+2018-10-12: jenkins2 175K, jenkins 88M
+2018-12-12 jenkins2 175KBl jenkins 328MB",,,,,,,
+"task","TeamViewer access to consult02,03: ok","4","1","","","","en",""
+"note","consult02.dev.cp.local	2innovate_thomas	CargoExt123	Miro	-||- -- ok 133 323 571 / 8493
+consult03.dev.cp.local	2innovate_kevin	CargoExt123	Miro	-||- -- ok 133 302 949 / 6964",,,,,,,
+"task","KCO-57 Install and test current SPOT version @openshift","4","1","","","","en",""
+"task","How to get memory usage from JMX using JMXConsoleTools","4","1","","","","en",""
+"note","/e/bin/jmx/jmx_console.sh get_attribute --host=spot-frontend$i.cp.local --port=9103 --object_name=java.lan g:type=Memory --attribute_name=HeapMemoryUsage
+/e/bin/jmx/jmx_console.sh get_attribute --host=spot-frontend$i.cp.local --port=9103 --object_name=java.lan g:type=Memory --attribute_name=HeapMemoryUsage | cut -d '=' -f 22 | cut -d '}' -f 1) / 1024 / 1024 / 1024 + 1",,,,,,,
+"task","k8s kubernetes: upgrade update kubeadm cluster","4","1","","","","en",""
+"note","https://crondev.com/kubernetes-upgrade-kubeadm/
+
+Kubernetes upgrade – kubeadm
+Alen Komljen May 16, 2017
+kubeadm is still in beta, but if you already deployed a Kubernetes cluster on some environment using it and now want to upgrade, you can do that manually. In some of previous posts, I wrote about Kubernetes deployment with kubeadm and it is available here https://crondev.com/kubernetes-installation-kubeadm. Currently kubeadm does not have support for cluster upgrade. This is a proposal I found, so it should be available later https://github.com/kubernetes/kubeadm/issues/14.
+
+Check for updates
+
+Find the latest version here https://github.com/kubernetes/kubernetes/tags, and check your running version with:
+
+1
+kubectl get nodes
+For this example, I did upgrade from v1.6.2 to v1.6.3.
+
+Upgrade Kubelet
+
+First, upgrade the system packages:
+
+1
+sudo apt-get update && sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni
+Repeat above step on each agent.
+
+Upgrade Kubernetes
+
+Upgrade the following components:
+
+kube-apiserver
+kube-scheduler
+kube-controller-manager
+Replace image version in all files:
+
+1
+sudo sed -i 's/v1.6.2/v1.6.3/g' /etc/kubernetes/manifests/*
+Wait until containers are pulled from remote and replaced:
+
+1
+watch -n 2 kubectl get pods -o wide --all-namespaces
+Upgrade kube-proxy
+
+Next, we need to upgrade kube-proxy. Since this is a DaemonSet it doesn’t support rolling upgrades, so you will need to remove each kube-proxy container manually. They will be automatically replaced with a new version:
+
+1
+kubectl edit daemonsets kube-proxy -n=kube-system
+Upgrade kube-dns
+
+Check for the latest available image with:
+
+1
+curl -s https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/dns/kubedns-controller.yaml.base | grep image
+Edit image version, 3 images in this case. Deployment supports rolling upgrades, so containers will be upgraded automatically after edit:
+
+1
+kubectl edit deployments kube-dns -n=kube-system
+And that’s it. You are running a new Kubernetes version.",,,,,,,
+"task","App Servers: upgrade images","4","1","","","","en",""
+"note","sudo bash
+docker pull spot-ci.dev.cp.local:5080/payara:171b
+docker pull spot-ci.dev.cp.local:5080/payarabackend:171b
+docker pull spot-ci.dev.cp.local:5080/payarafrontend:171b
+exit
+exit
+
+for i in spot.dev spot-stress.dev spot-it.test spot-branch1.test spot-branch2.test spot-tqm.test spot.trainings spot-frontend1.test.cn spot-backend1 spot-backend2 spot-backend3 spot-backend4 spot-backend-services1 spot-backend-services2 spot-frontend1 spot-frontend2 spot-frontend3 spot-frontend4 spot-frontend5 spot-frontend6 spot-frontend7 spot-frontend8 spot-frontend1.cn spot-frontend2.cn ; do ssh $i.cp.local ; done",,,,,,,
+"task","Record PROD DB and Elastic sizes @spot2","2","1","","","every 12th","en",""
+"note","2017-04-13 db 89 elastic 79 -- 27
+2017-05-13 db 113 elastic 107 -- 36
+2017-06-13 db 119 elastic 120 -- 40
+
+ssh spot-db1.cp.local "sudo bash ; df -h | grep pgsql"
+https://kopf.dev.cargo-partner.com/_plugin/kopf/#!/nodes
+
+2017-07-13 db 148 elastic 151 -- 3 replicas -- 50G
+2017-08-11 db 188 elastic 193 -- 3 replicas -- 64G
+2017-09-11 db 229 elastic 191 -- 3 replicas -- 63,6G. db space free 97
+2017-10-11 db 264 elastic 278 -- 3 replicas -- 93 (9 indices now). db free space 61
+2017-11-11 db 81 elastic 215 -- 3 replicas -- 73. db free 240G
+2017-12-11 db 92 free space 232; elastic 145, ~48 per replica
+2018-01-11 db 101 free space 224; elastic 166, ~55 per replica
+2018-02-13 db 112 free space 213; elastic 156, ~52 per replica
+2018-03-13 db 120 free space 204; elastic 168, ~56 per replica
+2018-05-13 db 140 free space 184; elastic 197, ~66 per replica
+2018-07-13 db 183 free space 162; elastic 229, ~76 per replica
+2018-08-13 db 193 free space 152; elastic 242, ~81 per replica
+2018-09-13 db 204 free space 141; elastic 256, ~85 per replica
+2018-10-12 db 213 free space 132; elastic 269; ~90 per replica
+2018-11-12 db 206 free space 140; elastic 284; ~95 per replica
+2018-12-12 db 218 free space 127; elastic 178; ~89 per replica (2 replicas)",,,,,,,
+"task","SQL Select for Personal Data MDM -> SPOT2 v2 (2017-02) @spot2","4","1","","","","en",""
+"note","select e.employee_id,
+e.persnr,
+u.login_name as login_name,
+e.first_name,
+e.last_name,
+e.title_prefix,
+e.salutation,
+u.ldap_identity as "identity",
+
+(select ec.value
+from mdmcur.mdm_org_employee_contact ec
+join mdmcur.mdm_org_employee_contact_type ect on ec.contact_type_id = ect."id"
+left join mdmcur.mdm_org_employee_2_contact e2c on ec.employee_2_contact_id = e2c."id"
+where e2c.employee_id = e."id"
+and e2c.is_main_contact = 1
+and ect.contact_type_id = 2
+limit 1) as phone_business,
+
+(select ec.value
+from mdmcur.mdm_org_employee_contact ec
+join mdmcur.mdm_org_employee_contact_type ect on ec.contact_type_id = ect."id"
+left join mdmcur.mdm_org_employee_2_contact e2c on ec.employee_2_contact_id = e2c."id"
+where e2c.employee_id = e."id"
+and e2c.is_main_contact = 1
+and ect.contact_type_id = 1
+limit 1) as phone_extension,
+
+(select ec.value
+from mdmcur.mdm_org_employee_contact ec
+join mdmcur.mdm_org_employee_contact_type ect on ec.contact_type_id = ect."id"
+left join mdmcur.mdm_org_employee_2_contact e2c on ec.employee_2_contact_id = e2c."id"
+where e2c.employee_id = e."id"
+and e2c.is_main_contact = 1
+and ect.contact_type_id = 4
+limit 1) as fax,
+
+(select ec.value
+from mdmcur.mdm_org_employee_contact ec
+join mdmcur.mdm_org_employee_contact_type ect on ec.contact_type_id = ect."id"
+left join mdmcur.mdm_org_employee_2_contact e2c on ec.employee_2_contact_id = e2c."id"
+where e2c.employee_id = e."id"
+and e2c.is_main_contact = 1
+and ect.contact_type_id = 3
+limit 1) as mobile,
+
+(select ue.user_alias
+from mdmcur.mdm_org_user_email ue
+where ue.user_id = u."id"
+and ue.is_main_address = 1
+limit 1) as email_before
+
+from mdmcur.mdm_org_employee e
+left join mdmcur.mdm_org_user u on e.persnr = u.persnr
+left join mdmcur.mdm_org_user_status us on u.user_state_id = us."id"
+where us.user_status_id = 2",,,,,,,
+"task","Office MDM Sync query","4","1","","","","en",""
+"note","SELECT * FROM mdmcur.mdm_cp_uwk ORDER BY uwk_code",,,,,,,
+"task","Database Sizes Query","4","1","","","","en",""
+"note","echo '\l+' | psql -h spot-db1.cp.local -U postgres spot
+
+
+SELECT d.datname AS Name,  pg_catalog.pg_get_userbyid(d.datdba) AS Owner,
+    CASE WHEN pg_catalog.has_database_privilege(d.datname, 'CONNECT')
+        THEN pg_catalog.pg_size_pretty(pg_catalog.pg_database_size(d.datname))
+        ELSE 'No Access'
+    END AS SIZE
+FROM pg_catalog.pg_database d
+    ORDER BY
+    CASE WHEN pg_catalog.has_database_privilege(d.datname, 'CONNECT')
+        THEN pg_catalog.pg_database_size(d.datname)
+        ELSE NULL
+    END DESC -- nulls first
+    LIMIT 20",,,,,,,
+"task","Duplicit contact person query @spot2","4","1","","","","en",""
+"note","SELECT * FROM addresses.contact_person cp 
+LEFT JOIN addresses.actor u ON cp.user_id = u."id"
+LEFT JOIN addresses.party p ON cp.party_id = p."id"
+LEFT JOIN addresses.party_domain d ON p."id" = d.party_id
+WHERE u."identity" = 'pn11996@cp.int' AND d."domain" = 'ABC'",,,,,,,
+"task","SQL Select for Personal Data MDM -> SPOT2 @spot2","4","1","","","","en",""
+"note","SELECT e.employee_id,
+       e.persnr,
+       u.login_name AS login_name,
+       e.first_name,
+       e.last_name,
+       e.title_prefix,
+       e.salutation,
+       u.ldap_identity AS "identity",
+
+  (SELECT ec.value
+   FROM mdmcur.mdm_org_employee_contact ec
+   LEFT JOIN mdmcur.mdm_org_employee_2_contact e2c ON e2c.employee_id = e.id
+   WHERE ec.employee_2_contact_id = e2c.id
+     AND e2c.is_main_contact = 1
+     AND ec.contact_type_id = 2 LIMIT 1) AS phone_business,
+
+  (SELECT ec.value
+   FROM mdmcur.mdm_org_employee_contact ec
+   LEFT JOIN mdmcur.mdm_org_employee_2_contact e2c ON e2c.employee_id = e.id
+   WHERE ec.employee_2_contact_id = e2c.id
+     AND e2c.is_main_contact = 1
+     AND ec.contact_type_id = 1 LIMIT 1) AS phone_extension,
+
+  (SELECT ec.value
+   FROM mdmcur.mdm_org_employee_contact ec
+   LEFT JOIN mdmcur.mdm_org_employee_2_contact e2c ON e2c.employee_id = e.id
+   WHERE ec.employee_2_contact_id = e2c.id
+     AND e2c.is_main_contact = 1
+     AND ec.contact_type_id = 4 LIMIT 1) AS fax,
+
+  (SELECT ec.value
+   FROM mdmcur.mdm_org_employee_contact ec
+   LEFT JOIN mdmcur.mdm_org_employee_2_contact e2c ON e2c.employee_id = e.id
+   WHERE ec.employee_2_contact_id = e2c.id
+     AND e2c.is_main_contact = 1
+     AND ec.contact_type_id = 3 LIMIT 1) AS mobile,
+
+  (SELECT ue.user_alias
+   FROM mdmcur.mdm_org_user_email ue
+   WHERE ue.user_id = u.id
+     AND ue.is_main_address = 1 LIMIT 1) AS email_before
+FROM mdmcur.mdm_org_employee e
+LEFT JOIN mdmcur.mdm_org_user u ON e.persnr = u.persnr
+WHERE u.user_state_id = 2",,,,,,,
+"task","User MDM Sync query (prod summer 2015) @spot2","4","1","","","","en",""
+"note","SELECT *,
+
+  (SELECT uwk.customer_number
+   FROM mdmcur.mdm_org_pers_location ul
+   LEFT JOIN rdcur.rd_org_pers_location l ON l.id = ul.employee_location_id
+   LEFT JOIN mdmcur.mdm_cp_uwk uwk ON uwk.office_code = l.location_code
+   AND trim(
+            FROM uwk.company) = 'CP' and uwk.enabled = 1
+   WHERE pers.pers_id = ul.pers_id
+     AND ul.employee_location_flg = 0
+     AND ul.function_code =
+       (SELECT mf.function_code
+        FROM mdmcur.mdm_org_pers_2_master_chart_function mf
+        WHERE mf.pers_id = pers.pers_id
+          AND mf.main_function_flg = 1)
+   ORDER BY uwk.customer_number LIMIT 1) AS customer_number_cp,
+
+  (SELECT uwk.customer_number
+   FROM mdmcur.mdm_org_pers_location ul
+   LEFT JOIN rdcur.rd_org_pers_location l ON l.id = ul.employee_location_id
+   LEFT JOIN mdmcur.mdm_cp_uwk uwk ON uwk.office_code = l.location_code
+   AND trim(
+            FROM uwk.company) = 'ABC' and uwk.enabled = 1
+   WHERE pers.pers_id = ul.pers_id
+     AND ul.employee_location_flg = 0
+     AND ul.function_code =
+       (SELECT mf.function_code
+        FROM mdmcur.mdm_org_pers_2_master_chart_function mf
+        WHERE mf.pers_id = pers.pers_id
+          AND mf.main_function_flg = 1)
+   ORDER BY uwk.customer_number LIMIT 1) AS customer_number_abc,
+
+  (SELECT array_to_string(array_agg(function_code), ',')
+   FROM mdmcur.mdm_org_pers_2_master_chart_function
+   WHERE pers_id = pers.pers_id
+     AND main_function_flg = 0) AS secondary_function_codes
+FROM mdmcur.list_mdm_org_pers_2_function() pers
+WHERE main_function_flg = 1
+ORDER BY persnr",,,,,,,
+"task","Požiadať o novú zdravotnú kartu","4","1","","","2019-01-07","en",""
+"note","vypisat 8 miestne cislo - CCCCDDMMRR na prednej strane karticky
+
+https://www.noegkk.at/cdscontent/?contentid=10007.701813&portal=noegkkportal&viewmode=content",,,,,,,

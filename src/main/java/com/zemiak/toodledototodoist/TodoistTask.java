@@ -16,7 +16,6 @@ public class TodoistTask {
     private String note;
 
     private static final Map<String, String> PRIORITY_MAP;
-    private static final Map<String, String> REPEAT_MAP;
 
     static {
         PRIORITY_MAP = new HashMap<>();
@@ -26,16 +25,6 @@ public class TodoistTask {
         PRIORITY_MAP.put("0", "4");
         PRIORITY_MAP.put("", "4");
         PRIORITY_MAP.put(null, "4");
-
-        REPEAT_MAP = new HashMap<>();
-        REPEAT_MAP.put("weekly", "weekly");
-        REPEAT_MAP.put("daily", "daily");
-        REPEAT_MAP.put("monthly", "monthly");
-        REPEAT_MAP.put("bimonthly", "every 2 months");
-        REPEAT_MAP.put("biweekly", "every 2 weeks");
-        REPEAT_MAP.put("quarterly", "every 4 months");
-        REPEAT_MAP.put("semianually", "every six months");
-        REPEAT_MAP.put("yearly", "yearly");
     }
 
     public TodoistTask() {
@@ -59,7 +48,7 @@ public class TodoistTask {
         this.date = t.getDueDate();
 
         if (!"".equals(t.getRepeat())) {
-            this.date = getRepeatString(t.getRepeat().toLowerCase()) + " starting " + this.date;
+            this.date = TodoistRepeatable.get(date, t.getRepeat().toLowerCase());
         }
     }
 
@@ -155,9 +144,5 @@ public class TodoistTask {
 
     public void setTimezone(String timezone) {
         this.timezone = timezone;
-    }
-
-    private String getRepeatString(String repeat) {
-        return REPEAT_MAP.get(repeat);
     }
 }
