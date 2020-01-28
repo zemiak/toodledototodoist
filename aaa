@@ -19,10 +19,10 @@ spot2-android",,,,,,,
 "task","Cloud Native Storage Project","4","1","","","2019-01-02","en",""
 "note","Netapp Trident",,,,,,,
 "task","parcel-raffle exception deletion","4","1","","","2019-01-08","en",""
-"note","https://servicedesk.cargo-partner.com/browse/ITSD-50800?focusedCommentId=451096&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-451096",,,,,,,
-"task","New SSL/https cert *.dev.cargo-partner.com","4","1","","","2020-09-10","en",""
+"note","https:.com/browse/ITSD-50800?focusedCommentId=451096&page=com.atlassian.jira.plugin.system.issuetabpanels%3Acomment-tabpanel#comment-451096",,,,,,,
+"task","New SSL/https cert *..com","4","1","","","2020-09-10","en",""
 "note","validity ends: 2020-10-02
-spot-ci.cp.local:/mnt/storage/data/http-filestore/cert/dev.cargo-partner.com/2020
+spot-ci.cp.local:/mnt/storage/data/http-filestore/cert/dev.com/2020
 domain.key
 domain.cert.chained - all 3 combined (cert, intermediate, root)
 
@@ -175,7 +175,7 @@ for i in spot.dev spot-stress.dev spot-it.test spot-branch1.test spot-branch2.te
 2017-06-13 db 119 elastic 120 -- 40
 
 ssh spot-db1.cp.local "sudo bash ; df -h | grep pgsql"
-https://kopf.dev.cargo-partner.com/_plugin/kopf/#!/nodes
+https://kopf.dev..com/_plugin/kopf/#!/nodes
 
 2017-07-13 db 148 elastic 151 -- 3 replicas -- 50G
 2017-08-11 db 188 elastic 193 -- 3 replicas -- 64G
